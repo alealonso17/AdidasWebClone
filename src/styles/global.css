@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* Asegúrate de que la fuente se aplique globalmente */
+body {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 200;
+  }
+strong{
+    font-weight: 400;
+}
+input[type="text"]{
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: small;
+}
