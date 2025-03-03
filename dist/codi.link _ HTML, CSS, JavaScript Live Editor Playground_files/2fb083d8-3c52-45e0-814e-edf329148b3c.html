@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)blob:https://codi.link/2fb083d8-3c52-45e0-814e-edf329148b3c -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style id="preview-style">div{
+  height: 100px;
+  width: 100px;
+  border:1px solid black
+}</style>
+    <script>
+    const customConsole = (w) => {
+      const pushToConsole = (payload, type) => {
+        w.parent.postMessage({
+          console: {
+            payload: payload,
+            type:    type
+          }
+        }, "*")
+      }
+
+      pushToConsole("clear", "system")
+
+      w.onerror = (message, url, line, column) => {
+        const DEFAULT_LINE_HEIGHT = 53
+        const htmlLines = 4
+        const cssLines = 1
+        const fixedLine = line - DEFAULT_LINE_HEIGHT - htmlLines - cssLines
+        pushToConsole({line:fixedLine, column, message}, "error")
+      }
+
+      const console = {
+        log: function(...args){
+          pushToConsole(args, "log:log")
+        },
+        error: function(...args){
+          pushToConsole(args, "log:error")
+        },
+        warn: function(...args){
+          pushToConsole(args, "log:warn")
+        },
+        info: function(...args){
+          pushToConsole(args, "log:info")
+        }
+      }
+
+      window.console = { ...window.console, ...console }
+    }
+
+    if (window.parent){
+      customConsole(window)
+    }
+  </script>
+  </head>
+  <body>
+    <div> 1
+</div>
+<div> 2
+</div>
+    <script type="module">
+import Tailwindcss from 'https://cdn.jsdelivr.net/npm/tailwindcss@4.0.9/+esm';
+// Vainilla JS 
+
+//Añadimos el boton 
+
+const boton = document.querySelector('button') 
+
+
+//Al hacer click al boton -> algo 
+
+boton.addEventListener('click',function(){
+    //recuperar id del boton 
+    const id = boton.getAttribute("data-id")
+
+    //llamar a una funcion  para actualizar si me gusta 
+    //CheckLike(id) 
+
+    if(boton.classList.contains('Liked')){
+      boton.classList.remove('Liked')
+      boton.innerText = 'Me gusta'
+    }else{ 
+      boton.classList.add('Liked') 
+      boton.innerText = 'Quitar Me Gusta'
+    }
+
+
+
+})
+    </script>
+  
+</body></html>
